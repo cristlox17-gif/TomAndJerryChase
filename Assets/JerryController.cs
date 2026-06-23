@@ -54,8 +54,30 @@ public class JerryController : MonoBehaviour
         // 1. Düz İlerleme (Yukarı Doğru Otomatik Hareket)
         transform.Translate(Vector3.up * currentForwardSpeed * Time.deltaTime);
 
-        // 2. Sağa-Sola Kaçış (A/D veya Yön Tuşları)
+        // 2. Sağa-Sola Kaçış (Klavye veya Dokunmatik Ekran)
         float moveX = Input.GetAxisRaw("Horizontal");
+
+        // Eğer ekranda dokunma algılanırsa (Telefon/Tablet için)
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            
+            // Dokunma devam ediyorsa veya hareket ediyorsa
+            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+            {
+                // Ekranın sol yarısına dokunulduysa sola git (-1)
+                if (touch.position.x < Screen.width / 2.0f)
+                {
+                    moveX = -1.0f;
+                }
+                // Ekranın sağ yarısına dokunulduysa sağa git (1)
+                else
+                {
+                    moveX = 1.0f;
+                }
+            }
+        }
+
         float newX = transform.position.x + moveX * sidewaySpeed * Time.deltaTime;
 
         // Karakterin ekran dışına çıkmasını engelle (Sınırlandır)
