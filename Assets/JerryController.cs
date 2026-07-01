@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class JerryController : MonoBehaviour
 {
@@ -132,6 +133,10 @@ public class JerryController : MonoBehaviour
     {
         isDead = true;
         currentForwardSpeed = 0f;
+
+        // İsmi yerel hafızadan çekip skoru kaydet
+        string playerName = PlayerPrefs.GetString("PlayerName", "Jerry");
+        ScoreManager.SaveScore(playerName, cheeseCount);
         
         if (gameOverPanel != null)
         {
@@ -139,7 +144,13 @@ public class JerryController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Oyun Bitti! Canınız tükendi.");
+            Debug.Log("Oyun Bitti! Canınız tükendi. Skor: " + cheeseCount);
         }
+    }
+
+    // Ana menüye dönmek için buton fonksiyonu
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
