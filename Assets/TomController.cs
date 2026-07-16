@@ -36,8 +36,9 @@ public class TomController : MonoBehaviour
         float targetY = jerryTransform.position.y - followDistance;
 
         // Eğer Jerry engele çarptıysa veya yavaşladıysa, Tom hızla ona yaklaşır
-        // Tom'un Y pozisyonu, targetY ile Jerry'nin Y pozisyonu arasında yumuşakça ilerler
-        float currentY = Mathf.MoveTowards(transform.position.y, jerryTransform.position.y - followDistance, catchUpSpeed * Time.deltaTime);
+        // Jerry hızlandıkça Tom'un da ona yetişme hızını (catchUpSpeed) ölçeklendiriyoruz
+        float currentCatchUpSpeed = catchUpSpeed + (jerryController.forwardSpeed - 5.0f);
+        float currentY = Mathf.MoveTowards(transform.position.y, jerryTransform.position.y - followDistance, currentCatchUpSpeed * Time.deltaTime);
 
         // Pozisyonu güncelle
         transform.position = new Vector3(targetX, currentY, transform.position.z);

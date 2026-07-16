@@ -10,6 +10,10 @@ public class JerryController : MonoBehaviour
     public float minX = -3.0f;            // Ekranın en sol sınırı
     public float maxX = 3.0f;             // Ekranın en sağ sınırı
 
+    [Header("Zorluk Ayarları (Zamanla Hızlanma)")]
+    public float speedIncreaseRate = 0.04f; // Saniyede hızın ne kadar artacağı
+    public float maxForwardSpeed = 12.0f;   // Ulaşılabilecek maksimum hız
+
     [Header("Oyun Durumu")]
     public int maxLives = 3;
     public int currentLives;
@@ -41,6 +45,10 @@ public class JerryController : MonoBehaviour
     {
         if (isDead) return;
 
+        // Zamanla hızı arttır (Zorlaşma mekaniği)
+        forwardSpeed += speedIncreaseRate * Time.deltaTime;
+        forwardSpeed = Mathf.Min(forwardSpeed, maxForwardSpeed);
+
         // Yavaşlama süresi kontrolü
         if (isSlowed)
         {
@@ -50,6 +58,10 @@ public class JerryController : MonoBehaviour
                 currentForwardSpeed = forwardSpeed;
                 isSlowed = false;
             }
+        }
+        else
+        {
+            currentForwardSpeed = forwardSpeed;
         }
 
         // 1. Düz İlerleme (Yukarı Doğru Otomatik Hareket)
