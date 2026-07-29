@@ -2351,18 +2351,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 45
+    m_FontStyle: 3
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 99
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '  skor tablosu'
 --- !u!222 &2112436105
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2387,7 +2387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.69000006}
   m_AnchorMax: {x: 1, y: 0.69000006}
-  m_AnchoredPosition: {x: -49.99999, y: -18.999992}
+  m_AnchoredPosition: {x: -50, y: 2.5707}
   m_SizeDelta: {x: 909.9394, y: 835.1413}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2121706739

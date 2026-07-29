@@ -6,6 +6,8 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 0.125f;  // Kameranın takip yumuşaklığı (0 ile 1 arası)
     public Vector3 offset = new Vector3(0, 0, -10); // Kameranın karakterle arasındaki mesafe (2D'de Z ekseni -10 olmalıdır)
 
+    public bool lockX = true;           // Kameranın yatayda (sağa-sola) takip etmesini engeller (sabit tutar)
+
     // LateUpdate kameranın titremesini önlemek için fizik ve hareketlerden sonra çalışır
     void LateUpdate()
     {
@@ -14,10 +16,16 @@ public class CameraFollow : MonoBehaviour
         // Kameranın gitmesi gereken hedef pozisyon
         Vector3 desiredPosition = target.position + offset;
         
+        // Eğer yatay takip kilitliyse, X konumunu sabit tutuyoruz (0)
+        if (lockX)
+        {
+            desiredPosition.x = offset.x;
+        }
+        
         // Kamerayı mevcut konumundan hedef konuma yumuşakça kaydır
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         
-        // Kameranın pozisyonunu güncelle
-        transform.position = smoothedPosition;
+        // Kameranın pozisyonunu güncelle (Z eksenini koruyoruz)
+        transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
     }
 }
