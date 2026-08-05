@@ -15,6 +15,13 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        // Ekran döndürmeyi yatay konumlarla sınırla (Dikey konumları engelle)
+        Screen.orientation = ScreenOrientation.AutoRotation;
+        Screen.autorotateToPortrait = false;
+        Screen.autorotateToPortraitUpsideDown = false;
+        Screen.autorotateToLandscapeLeft = true;
+        Screen.autorotateToLandscapeRight = true;
+
         // Oyun başında sadece ana paneli göster, diğerlerini gizle
         if (mainPanel != null) mainPanel.SetActive(true);
         if (leaderboardPanel != null) leaderboardPanel.SetActive(false);
@@ -34,6 +41,8 @@ public class MainMenuManager : MonoBehaviour
     // Oyunu Başlat
     public void StartGame()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         if (nameInputField != null)
         {
             string playerName = nameInputField.text.Trim();
@@ -56,6 +65,8 @@ public class MainMenuManager : MonoBehaviour
     // Skor Tablosunu Aç
     public void OpenLeaderboard()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         if (leaderboardPanel != null) leaderboardPanel.SetActive(true);
         UpdateLeaderboardUI();
     }
@@ -63,24 +74,32 @@ public class MainMenuManager : MonoBehaviour
     // Skor Tablosunu Kapat
     public void CloseLeaderboard()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         if (leaderboardPanel != null) leaderboardPanel.SetActive(false);
     }
 
     // Ayarları Aç
     public void OpenSettings()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         if (settingsPanel != null) settingsPanel.SetActive(true);
     }
 
     // Ayarları Kapat
     public void CloseSettings()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         if (settingsPanel != null) settingsPanel.SetActive(false);
     }
 
     // Skorları Sıfırla (Ayarlar içinden çağrılacak)
     public void ResetAllData()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         ScoreManager.ClearScores();
         PlayerPrefs.DeleteKey("PlayerName");
         if (nameInputField != null) nameInputField.text = "";

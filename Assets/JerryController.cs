@@ -32,6 +32,13 @@ public class JerryController : MonoBehaviour
 
     void Start()
     {
+        // Ekran döndürmeyi yatay konumlarla sınırla (Dikey konumları engelle)
+        Screen.orientation = ScreenOrientation.AutoRotation;
+        Screen.autorotateToPortrait = false;
+        Screen.autorotateToPortraitUpsideDown = false;
+        Screen.autorotateToLandscapeLeft = true;
+        Screen.autorotateToLandscapeRight = true;
+
         currentLives = maxLives;
         currentForwardSpeed = forwardSpeed;
         UpdateUI();
@@ -145,6 +152,12 @@ public class JerryController : MonoBehaviour
     {
         isDead = true;
         currentForwardSpeed = 0f;
+
+        // Ses Efekti Çal
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayGameOver();
+        }
 
         // İsmi yerel hafızadan çekip skoru kaydet
         string playerName = PlayerPrefs.GetString("PlayerName", "Jerry");

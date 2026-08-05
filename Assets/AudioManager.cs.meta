@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e4909e7faba0a574ca84601ce4bf06f4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - backgroundMusic: {fileID: 8300000, guid: feeb3ff19facccf4d84765e71af3a4f7, type: 3}
+  - cheeseCollectSound: {fileID: 8300000, guid: 1932ab5cbc1c0244fb92d58ef750a9d8, type: 3}
+  - obstacleHitSound: {fileID: 8300000, guid: 2dc503d4c5b5f1b47866850a67e136b3, type: 3}
+  - tomAttackSound: {instanceID: 0}
+  - gameOverSound: {fileID: 8300000, guid: 60cf2aa0c2467ee4aa4517f5f0ccd670, type: 3}
+  - buttonClickSound: {fileID: 8300000, guid: b3eeec7c85092ac40b801ba2380d9671, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

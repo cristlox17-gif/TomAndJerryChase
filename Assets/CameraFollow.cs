@@ -8,6 +8,16 @@ public class CameraFollow : MonoBehaviour
 
     public bool lockX = true;           // Kameranın yatayda (sağa-sola) takip etmesini engeller (sabit tutar)
 
+    [Header("Ekran Sarsıntısı (Screen Shake)")]
+    private float shakeDuration = 0f;
+    private float shakeMagnitude = 0.15f;
+
+    public void TriggerShake(float duration, float magnitude)
+    {
+        shakeDuration = duration;
+        shakeMagnitude = magnitude;
+    }
+
     // LateUpdate kameranın titremesini önlemek için fizik ve hareketlerden sonra çalışır
     void LateUpdate()
     {
@@ -26,6 +36,17 @@ public class CameraFollow : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         
         // Kameranın pozisyonunu güncelle (Z eksenini koruyoruz)
-        transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
+        Vector3 finalPosition = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
+
+        // Eğer ekran sarsıntısı aktifse pozisyona rastgele kayma ekle
+        if (shakeDuration > 0)
+        {
+            Vector3 shakeOffset = Random.insideUnitSphere * shakeMagnitude;
+            shakeOffset.z = 0f; // 2D oyunda Z ekseni sarsılmamalı
+            finalPosition += shakeOffset;
+            shakeDuration -= Time.deltaTime;
+        }
+
+        transform.position = finalPosition;
     }
 }

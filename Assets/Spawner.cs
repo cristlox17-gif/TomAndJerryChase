@@ -136,6 +136,11 @@ public class Spawner : MonoBehaviour
                 Vector3 obstaclePos = new Vector3(lanes[obstacleLane], spawnY, 0);
                 GameObject newObstacle = Instantiate(currentObstaclePrefab, obstaclePos, Quaternion.identity);
                 activeObjects.Add(newObstacle);
+
+                // Geliş yönünü gösteren uyarı göstergesini oluştur
+                GameObject warningObj = new GameObject("ObstacleWarning_" + obstacleLane);
+                ObstacleWarning warning = warningObj.AddComponent<ObstacleWarning>();
+                warning.Setup(newObstacle.transform);
             }
 
             // 2. Peynire Karar Ver (%80 ihtimalle peynir spawn et)

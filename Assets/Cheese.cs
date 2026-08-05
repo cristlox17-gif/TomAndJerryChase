@@ -14,6 +14,12 @@ public class Cheese : MonoBehaviour
             // Jerry'ye peynir ekle
             jerry.CollectCheese(cheeseValue);
             
+            // Ses Efekti Çal
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayCheeseCollect();
+            }
+            
             // Peynir toplandığı için peyniri sahneden yok et
             Destroy(gameObject);
         }

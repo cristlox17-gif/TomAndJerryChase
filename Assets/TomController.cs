@@ -59,6 +59,22 @@ public class TomController : MonoBehaviour
         // Jerry'ye hasar ver (1 can düşür)
         jerryController.TakeDamage(1);
 
+        // Ses Efekti Çal
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayTomAttack();
+        }
+
+        // Ekran Sarsıntısını Tetikle (Saldırı için daha güçlü sarsıntı)
+        if (Camera.main != null)
+        {
+            CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
+            if (camFollow != null)
+            {
+                camFollow.TriggerShake(0.3f, 0.38f);
+            }
+        }
+
         // Görsel efekt ve hisiyat için Tom'u biraz geriye fırlatıyoruz (Jerry kaçabilsin diye)
         transform.position = new Vector3(transform.position.x, transform.position.y - pushBackDistance, transform.position.z);
         
