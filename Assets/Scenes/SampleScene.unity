@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 40958169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0125, y: 0.28, z: 0}
+  m_LocalPosition: {x: -0.0125, y: -0.92, z: 0}
   m_LocalScale: {x: 0.6898321, y: 1.4214218, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -769,9 +769,24 @@ MonoBehaviour:
   jerryTransform: {fileID: 855663761}
   obstaclePrefab: {fileID: 6102359950070378797, guid: f49b83db0d32a1645a4a31d37f1ef567, type: 3}
   cheesePrefab: {fileID: 767519442557368323, guid: b26780be50d2f0f478da8c058b4e70b9, type: 3}
+  heartPrefab: {fileID: 3555845932946043543, guid: e063a1d411885e34ca5917c645063267, type: 3}
+  heartSpawnChance: 0.02
+  magnetPrefab: {fileID: 1478487756058899010, guid: cf5f6342b5f994b44a6e892ff09c9af0, type: 3}
+  shieldPrefab: {fileID: 5369799740827545365, guid: 41b933efc63521949858ab37df2f427c, type: 3}
+  potionPrefab: {fileID: 7517645947837216001, guid: 97b861c2ff7cbe1448de1b4307594dc2, type: 3}
+  moldyCheesePrefab: {fileID: 8048763758859386128, guid: 5f5264dba9ef43349b1e9d029ab3a652, type: 3}
+  teleporterPrefab: {fileID: 5738786941064628462, guid: c0e52110a605fb144867d6c518bbe2ed, type: 3}
+  magnetSpawnChance: 0.02
+  shieldSpawnChance: 0.02
+  potionSpawnChance: 0.02
+  moldyCheeseSpawnChance: 0.02
+  teleporterSpawnChance: 0.0005
+  mudObstaclePrefab: {fileID: 788065203910429023, guid: 6055a078c82ebaa4fb47b139d05c657d, type: 3}
+  mudObstacleSpawnChance: 0.02
   spawnAheadDistance: 15
   spawnInterval: 1.8
   biomeLength: 200
+  transitionSafetyZone: 15
   backyardObstaclePrefab: {fileID: 419983913203845580, guid: 3ca16e32de3f10d4c8032b95900f199e, type: 3}
   kitchenRoadSprite: {fileID: 7094887773775264657, guid: 69fe144f7e563a543a26fb1a07a80889, type: 3}
   backyardRoadSprite: {fileID: -7761804857585976866, guid: 147da00862ee93f468faf168efed3a84, type: 3}
@@ -779,6 +794,17 @@ MonoBehaviour:
   - {fileID: 40958170}
   - {fileID: 1899189819}
   - {fileID: 1992551808}
+  bonusRoomDuration: 8
+  bonusSpawnInterval: 0.4
+  bonusMagnetSpawnChance: 0.02
+  cheeseRoadSprite: {fileID: 7869589884366567108, guid: 8bebd7cb2a2107749a6e221a3d377ffd, type: 3}
+  cheeseLeftPanelSprite: {fileID: -6058775891576663989, guid: 73c884f5f85431347b94f13739290a24, type: 3}
+  cheeseRightPanelSprite: {fileID: -558443913111127005, guid: 2b44f50d1626d6440a25e7fb37b7d381, type: 3}
+  bonusRoadRenderers: []
+  cheeseRoadScale: {x: 1, y: 2, z: 1}
+  cheeseLeftPanelScale: {x: 1.525635, y: 0.9967737, z: 10}
+  cheeseRightPanelScale: {x: 1.278351, y: 1.0051, z: 10}
+  cheesePanelXOffset: 7.73
   leftSidePanel: {fileID: 1029071016}
   rightSidePanel: {fileID: 1401074689}
   kitchenLeftSprite: {fileID: -2869103829828415519, guid: 01198acb605ee3c449412c5fc15156e1, type: 3}
@@ -960,6 +986,7 @@ MonoBehaviour:
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: -10}
   lockX: 1
+  nauseaTimer: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,9 +1175,6 @@ MonoBehaviour:
   followDistance: 4
   catchUpSpeed: 6
   sideSmoothSpeed: 5
-  attackRange: 1
-  pushBackDistance: 3.5
-  attackCooldown: 2
 --- !u!1 &855663759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1290,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 395817924}
   livesText: {fileID: 193792676}
   cheeseText: {fileID: 313504939}
+  isInBonusRoom: 0
 --- !u!50 &855663763
 Rigidbody2D:
   serializedVersion: 5
@@ -1505,6 +1530,109 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1099997259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099997262}
+  - component: {fileID: 1099997261}
+  - component: {fileID: 1099997260}
+  m_Layer: 0
+  m_Name: Chees Road
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1099997260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099997259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae32644b89b9684a8ce013db78b7695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  roadHeight: 13.8
+  totalRoads: 4
+--- !u!212 &1099997261
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099997259}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7869589884366567108, guid: 8bebd7cb2a2107749a6e221a3d377ffd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 12.54, y: 12.54}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1099997262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099997259}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 311, y: 52, z: -0.07211302}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1296716485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1881,7 @@ Transform:
   m_GameObject: {fileID: 1899189818}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0125, y: 13.96, z: 0}
+  m_LocalPosition: {x: -0.0125, y: 12.9, z: 0}
   m_LocalScale: {x: 0.6898321, y: 1.4214218, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1856,7 +1984,7 @@ Transform:
   m_GameObject: {fileID: 1992551807}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0125, y: 27.71, z: 0}
+  m_LocalPosition: {x: -0.0125, y: 26.65, z: 0}
   m_LocalScale: {x: 0.6898321, y: 1.4214218, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1891,3 +2019,4 @@ SceneRoots:
   - {fileID: 40958171}
   - {fileID: 1899189820}
   - {fileID: 1992551809}
+  - {fileID: 1099997262}

@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: e4909e7faba0a574ca84601ce4bf06f4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - backgroundMusic: {fileID: 8300000, guid: feeb3ff19facccf4d84765e71af3a4f7, type: 3}
+  - cheeseCollectSound: {fileID: 8300000, guid: 1932ab5cbc1c0244fb92d58ef750a9d8, type: 3}
+  - obstacleHitSound: {fileID: 8300000, guid: 4012fbe3ea6299f4ca74a77720f4ee87, type: 3}
+  - tomAttackSound: {instanceID: 0}
+  - gameOverSound: {fileID: 8300000, guid: 60cf2aa0c2467ee4aa4517f5f0ccd670, type: 3}
+  - buttonClickSound: {fileID: 8300000, guid: b3eeec7c85092ac40b801ba2380d9671, type: 3}
+  - heartCollectSound: {fileID: 8300000, guid: 1e23110368c885c4cb95ee6e2c7714a0, type: 3}
+  - mudSplatSound: {fileID: 8300000, guid: be4087f3c5382d44ca30a0efbb264578, type: 3}
+  - nauseaSound: {fileID: 8300000, guid: d110eb3b08ca35c42a43843efd607121, type: 3}
+  - teleportInSound: {fileID: 8300000, guid: 2aaaea8ac667cf246af85bea1d112865, type: 3}
+  - teleportOutSound: {fileID: 8300000, guid: 2aaaea8ac667cf246af85bea1d112865, type: 3}
+  - biomeTransitionSound: {fileID: 8300000, guid: a6b33f12acdc98f4893e8df58b8cd6f8, type: 3}
+  - magnetSound: {fileID: 8300000, guid: 871e6e771c07797489d8980a610f7d3c, type: 3}
+  - shieldSound: {fileID: 8300000, guid: a51ec1545b0798648944a0a3ce3d0def, type: 3}
+  - potionSound: {fileID: 8300000, guid: 921a9610f8a52fe4dabd4d48eea58c70, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
